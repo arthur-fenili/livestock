@@ -36,9 +36,10 @@ public class ProdutoController {
     }
 
     @GetMapping("/lista")
-    public ModelAndView listarProdutos() {
+    public ModelAndView listaProdutos() {
         ModelAndView mv = new ModelAndView("listaProdutos");
         mv.addObject("produtos", produtoService.listarProdutos());
+        System.out.println("Produtos retornados: " + produtoService.listarProdutos()); //DEBUG
         return mv;
     }
 

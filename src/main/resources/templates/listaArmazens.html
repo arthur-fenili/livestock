@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Lista de Armazéns</title>
+    <link th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
 <body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<div class="container mt-5">
+    <h2 class="mb-4">Armazéns Cadastrados</h2>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Telefone</th>
+            <th>Responsável</th>
+            <th class="action">Editar</th>
+            <th class="action">Excluir</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="armazem : ${armazens}">
+            <td th:text="${armazem.nomeArmazem}"></td>
+            <td th:text="${armazem.endereco}"></td>
+            <td th:text="${armazem.telefone}"></td>
+            <td th:text="${armazem.nomeResponsavel}"></td>
+            <td class="action-button">
+                <a th:href="@{'/armazem/atualizar/' + ${armazem.id}}">Editar</a>
+            </td>
+            <td class="action-button">
+                <a th:href="@{'/armazem/deletar/' + ${armazem.id}}"
+                   onclick="return confirm('Tem certeza que deseja excluir este armazém?');">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/armazem/cadastrar}">
+        <button type="button" class="btn btn-success">Cadastrar Novo Armazém</button>
+    </a>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>

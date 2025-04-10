@@ -27,9 +27,6 @@ public class Produto {
     @Column(name = "NOME_PRODUTO", length = 255)
     private String nomeProduto;
 
-    @Column(name = "DESCRICAO", length = 255)
-    private String descricao;
-
     @Column(name = "QUANTIDADE", length = 255)
     private Integer quantidade;
 

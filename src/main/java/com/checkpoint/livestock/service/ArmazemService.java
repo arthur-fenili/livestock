@@ -27,10 +27,14 @@ public class ArmazemService {
         armazemRepository.save(armazem);
     }
 
-    public List<ArmazemResponse> listarArmazens() {
-        return armazemRepository.findAll().stream()
-                .map(this::toResponse)
-                .toList();
+    public List<Armazem> listarArmazens() {
+        return armazemRepository.findAll();
+    }
+
+    public ArmazemResponse buscarPorId(Long id) {
+        Armazem armazem = armazemRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Armazém não encontrado"));
+        return toResponse(armazem);
     }
 
     public void deletarArmazem(Long id) {

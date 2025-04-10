@@ -1,10 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Editar Armazém</title>
+    <link th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
 <body>
+<div th:replace="~{fragments/header :: header}"></div>
 
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0">Editar Armazém</h4>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{'/armazem/atualizar/' + ${armazemRequest.id}}" method="post" th:object="${armazemRequest}">
+                        <div class="mb-3">
+                            <label for="nomeArmazem" class="form-label">Nome do Armazém</label>
+                            <input type="text" th:field="*{nomeArmazem}" id="nomeArmazem" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="endereco" class="form-label">Endereço</label>
+                            <input type="text" th:field="*{endereco}" id="endereco" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefone" class="form-label">Telefone</label>
+                            <input type="text" th:field="*{telefone}" id="telefone" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nomeResponsavel" class="form-label">Nome do Responsável</label>
+                            <input type="text" th:field="*{nomeResponsavel}" id="nomeResponsavel" class="form-control" required>
+                        </div>
+                        <div class="d-grid">
+                            <input type="submit" value="Atualizar Armazém" class="btn btn-warning text-white">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>

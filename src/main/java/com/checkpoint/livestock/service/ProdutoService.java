@@ -27,7 +27,6 @@ public class ProdutoService {
 
         Produto produto = new Produto();
         produto.setNomeProduto(dto.getNomeProduto());
-        produto.setDescricao(dto.getDescricao());
         produto.setQuantidade(dto.getQuantidade());
         produto.setPrecoCusto(dto.getPrecoCusto());
         produto.setCategoria(dto.getCategoria());
@@ -36,10 +35,8 @@ public class ProdutoService {
         produtoRepository.save(produto);
     }
 
-    public List<ProdutoResponse> listarProdutos() {
-        return produtoRepository.findAll().stream()
-                .map(this::toResponse)
-                .toList();
+    public List<Produto> listarProdutos() {
+        return produtoRepository.findAll();
     }
 
     public ProdutoResponse buscarPorId(Long id) {
@@ -66,7 +63,6 @@ public class ProdutoService {
                 .orElseThrow(() -> new RuntimeException("Armazém não encontrado"));
 
         produto.setNomeProduto(dto.getNomeProduto());
-        produto.setDescricao(dto.getDescricao());
         produto.setQuantidade(dto.getQuantidade());
         produto.setPrecoCusto(dto.getPrecoCusto());
         produto.setCategoria(dto.getCategoria());
@@ -79,7 +75,6 @@ public class ProdutoService {
         return new ProdutoResponse(
                 produto.getId(),
                 produto.getNomeProduto(),
-                produto.getDescricao(),
                 produto.getQuantidade(),
                 produto.getPrecoCusto(),
                 produto.getCategoria(),

@@ -1,46 +1,54 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Lista de Produtos</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Lista de Produtos</title>
+    <link th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
 <body>
-<section class="section">
-    <div class="container">
-        <h1 class="title">Produtos Cadastrados</h1>
 
-        <a href="/produto/cadastrar" class="button">Cadastrar Novo Produto</a>
+<div th:replace="~{fragments/header :: header}"></div>
 
-        <table>
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Categoria</th>
-                <th>Quantidade</th>
-                <th>Preço de Custo</th>
-                <th>Armazém</th>
-                <th>Ações</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="produto : ${produtos}">
-                <td th:text="${produto.id}"></td>
-                <td th:text="${produto.nomeProduto}"></td>
-                <td th:text="${produto.categoria}"></td>
-                <td th:text="${produto.quantidade}"></td>
-                <td th:text="${#numbers.formatDecimal(produto.precoCusto, 1, 'POINT', 2, 'COMMA')}"></td>
-                <td th:text="${produto.nomeArmazem}"></td>
-                <td>
-                    <a th:href="@{/produto/atualizar/{id}(id=${produto.id})}" class="button edit">Editar</a>
-                    <a th:href="@{/produto/deletar/{id}(id=${produto.id})}" class="button delete"
-                       onclick="return confirm('Tem certeza que deseja deletar este produto?')">Excluir</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</section>
+<div class="container mt-5">
+    <h2 class="mb-4">Produtos Cadastrados</h2>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Quantidade</th>
+            <th>Preço</th>
+            <th>Armazém</th>
+            <th class="action">Editar</th>
+            <th class="action">Excluir</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="produto : ${produtos}">
+            <td th:text="${produto.nomeProduto}"></td>
+            <td th:text="${produto.categoria}"></td>
+            <td th:text="${produto.quantidade}"></td>
+            <td th:text="'R$' + ${#numbers.formatDecimal(produto.precoCusto, 1, 2)}"></td>
+            <td th:text="${produto.armazem.nomeArmazem}"></td>
+            <td class="action-button">
+                <a th:href="@{'/produto/atualizar/' + ${produto.id}}">Editar</a>
+            </td>
+            <td class="action-button">
+                <a th:href="@{'/produto/deletar/' + ${produto.id}}"
+                   onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</a>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/produto/cadastrar}">
+        <button type="button" class="btn btn-success">Cadastrar Novo Produto</button>
+    </a>
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+
 </body>
 </html>
