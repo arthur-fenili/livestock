@@ -1,4 +1,7 @@
 package com.checkpoint.livestock.repository;
 
-public interface ArmazemRepository {
+import com.checkpoint.livestock.model.Armazem;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ArmazemRepository extends JpaRepository<Armazem, Long> {
 }
