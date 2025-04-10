@@ -194,3 +194,50 @@ input[type="submit"]:hover {
     background-color: #1E40AF;
     color: white;
 }
+
+/* Página Home - cards dos integrantes */
+.integrante-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffffff;
+}
+
+.integrante-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+    color: #1E40AF;
+    font-weight: 600;
+    font-size: 1.3em;
+}
+
+.card-text {
+    color: #3B82F6;
+    font-weight: 500;
+}
+
+.text-muted {
+    font-size: 0.9em;
+    color: #6c757d !important;
+}
+
+.dev-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.img-home {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 30px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
